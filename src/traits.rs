@@ -1,6 +1,8 @@
 //! Abstract operations exposed by the library.
 
 /// Secure generation of fresh key pairs.
+
+use std::prelude::v1::*;
 pub trait KeyGeneration<KP> {
     /// Generate fresh key pair with currently recommended security level (2048 bit modulus).
     fn keypair() -> KP {

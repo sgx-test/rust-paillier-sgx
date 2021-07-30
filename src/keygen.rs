@@ -1,5 +1,7 @@
 //! Key generation following standard recommendations.
 
+#![no_std]
+use std::prelude::v1::*;
 use curv::arithmetic::traits::*;
 
 use crate::traits::*;

@@ -1,5 +1,6 @@
 //! Integral code supporting both scalars and vectors.
-
+#![no_std]
+use std::prelude::v1::*;
 use std::borrow::Borrow;
 use std::convert::TryFrom;
 use std::marker::PhantomData;

@@ -1,5 +1,7 @@
 //! Various coding schemes to be used in conjunction with the core Paillier encryption scheme.
 
+#![no_std]
+use std::prelude::v1::*;
 use std::convert::TryFrom;
 use std::marker::PhantomData;
 

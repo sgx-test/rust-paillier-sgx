@@ -1,4 +1,9 @@
+#![no_std]
+use std::prelude::v1::*;
+
 pub mod bigint {
+    use std::prelude::v1::*;
+
     use std::fmt;
 
     use curv::arithmetic::BigInt;
@@ -31,6 +36,8 @@ pub mod bigint {
 }
 
 pub mod vecbigint {
+    use std::prelude::v1::*;
+
     use std::fmt;
 
     use curv::arithmetic::BigInt;
