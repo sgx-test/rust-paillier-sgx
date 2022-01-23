@@ -6,7 +6,7 @@ edition = "2018"
 [dependencies]
 rayon = "1.1"
 serde = { version = "1.0", features = ["derive"] }
-curv = { git = "https://github.com/sgx-test/curv-sgx", branch = "0.7.0-sgx-struct", version = "0.7", default-features = false, features = ["num-bigint"] }
+curv = { git = "https://github.com/sgx-test/curv-sgx", branch = "0.7.0-sgx-struct", version = "0.7", default-features = false}
 
 [dev-dependencies]
 bencher = "0.1"
@@ -14,7 +14,7 @@ serde_json = "1.0"
 rand = "0.6"
 
 [features]
-default = ["curv/num-bigint"]
+default = ["curv/rust-gmp-kzen"]
 
 [[bench]]
 name = "arith"
