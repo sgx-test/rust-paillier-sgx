@@ -15,7 +15,8 @@ rand = "0.6"
 
 [features]
 default = ["curv/rust-gmp-kzen"]
-wasm = []
+parallel = []
+wasm = ["curv/big-num"]
 
 [[bench]]
 name = "arith"
