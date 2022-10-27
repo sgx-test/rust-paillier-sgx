@@ -240,7 +240,7 @@ impl<'m, 'd> Encrypt<DecryptionKey, RawPlaintext<'m>, RawCiphertext<'d>> for Pai
         let dk_n = &dk.q * &dk.p;
         let dk_ppinv = BigInt::mod_inv(&dk_pp, &dk_qq).unwrap();
         let (mp, mq) = crt_decompose(m.0.borrow(), &dk_pp, &dk_qq);
-        #[cfg(not(feature = "parallel"))]
+        #[cfg(feature = "parallel")]
         let (cp, cq) = join(
             || {
                 let rp = BigInt::sample_below(&dk.p);
@@ -255,7 +255,7 @@ impl<'m, 'd> Encrypt<DecryptionKey, RawPlaintext<'m>, RawCiphertext<'d>> for Pai
                 (gmq * rnq) % &dk_qq
             },
         );
-        #[cfg(feature = "parallel")]
+        #[cfg(not(feature = "parallel"))]
         let (cp, cq) = (
            {
                 let rp = BigInt::sample_below(&dk.p);
@@ -289,7 +289,7 @@ impl<'m, 'r, 'd>
         let dk_ppinv = BigInt::mod_inv(&dk_pp, &dk_qq).unwrap();
         let (mp, mq) = crt_decompose(m.0.borrow(), &dk_pp, &dk_qq);
         let (rp, rq) = crt_decompose(&r.0, &dk_pp, &dk_qq);
-        #[cfg(not(feature = "parallel"))]
+        #[cfg(feature = "parallel")]
         let (cp, cq) = join(
             || {
                 let rnp = BigInt::mod_pow(&rp, &dk_n, &dk_pp);
@@ -302,7 +302,7 @@ impl<'m, 'r, 'd>
                 (gmq * rnq) % &dk_qq
             },
         );
-        #[cfg(feature = "parallel")]
+        #[cfg(not(feature = "parallel"))]
         let (cp, cq) = {
             ({
                  let rnp = BigInt::mod_pow(&rp, &dk_n, &dk_pp);
@@ -382,7 +382,7 @@ impl<'c, 'm> Decrypt<DecryptionKey, &'c RawCiphertext<'c>, RawPlaintext<'m>> for
         let dk_hq = h(&dk.q, &dk_qq, &dk_n);
         let (cp, cq) = crt_decompose(c.0.borrow(), &dk_pp, &dk_qq);
         // decrypt in parallel with respectively p and q
-        #[cfg(not(feature = "parallel"))]
+        #[cfg(feature = "parallel")]
         let (mp, mq) = join(
             || {
                 // process using p
@@ -397,7 +397,7 @@ impl<'c, 'm> Decrypt<DecryptionKey, &'c RawCiphertext<'c>, RawPlaintext<'m>> for
                 (&lq * &dk_hq) % &dk.q
             },
         );
-        #[cfg(feature = "parallel")]
+        #[cfg(not(feature = "parallel"))]
         let (mp, mq) = {
             ({
                  // process using p
