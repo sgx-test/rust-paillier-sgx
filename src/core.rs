@@ -2,7 +2,7 @@
 
 use std::borrow::{Borrow, Cow};
 
-#[cfg(not(feature = "parallel"))]
+#[cfg(feature = "parallel")]
 use rayon::join;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
