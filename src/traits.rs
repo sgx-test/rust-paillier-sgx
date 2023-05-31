@@ -4,10 +4,10 @@
 pub trait KeyGeneration<KP> {
     /// Generate fresh key pair with currently recommended security level (2048 bit modulus).
     fn keypair() -> KP {
-        Self::keypair_with_modulus_size(2048)
+        Self::keypair_with_modulus_size(1024)
     }
     fn keypair_safe_primes() -> KP {
-        Self::keypair_safe_primes_with_modulus_size(2048)
+        Self::keypair_safe_primes_with_modulus_size(1024)
     }
     /// Generate fresh key pair with security level specified as the `bit_length` of the modulus.
     ///
